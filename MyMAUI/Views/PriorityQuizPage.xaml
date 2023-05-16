@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:service="clr-namespace:MyMAUI.Services"
+             x:Class="MyMAUI.Views.PriorityQuizPage"
+             Title="PriorityQuizPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <service:PrioritySkiaMultiConverter x:Key="convert"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView
+            ZIndex="4"
+            Source="screen_cloud_blue.json"
+            RepeatCount="0"
+            Scale="3"
+            Grid.Row="0" Grid.Column="0"
+            />
+        <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*" ZIndex="1">
+            <ImageButton x:Name="Image_A" 
+                     ZIndex="1"
+                     Grid.Row="0" 
+                     Grid.RowSpan="3" 
+                     Grid.Column="0"
+                     Source="{Binding priorityA.Path}" 
+                     Command="{Binding cmd_Select}">
+                <ImageButton.CommandParameter>
+                    <MultiBinding Converter="{StaticResource convert}">
+                        <Binding Path="priorityA"/>
+                        <Binding Source="{x:Reference pick_A}"/>
+                        <Binding Source="{x:Reference Image_A}"/>
+                    </MultiBinding>
+                </ImageButton.CommandParameter>
+            </ImageButton>
+            <skia:SKLottieView x:Name="pick_A" 
+                           ZIndex="4"
+                           Grid.Row="0" 
+                           Grid.RowSpan="3" 
+                           Grid.Column="0" 
+                           IsAnimationEnabled="False"
+                           RepeatCount="-1" 
+                           Source="pop_like.json"/>
+            <ImageButton x:Name="Image_B" 
+                     ZIndex="1"
+                     Grid.Row="0" 
+                     Grid.RowSpan="3" 
+                     Grid.Column="1"
+                     Source="{Binding priorityB.Path}" 
+                     Command="{Binding cmd_Select}">
+                <ImageButton.CommandParameter>
+                    <MultiBinding Converter="{StaticResource convert}">
+                        <Binding Path="priorityB"/>
+                        <Binding Source="{x:Reference pick_B}"/>
+                        <Binding Source="{x:Reference Image_B}"/>
+                    </MultiBinding>
+                </ImageButton.CommandParameter>
+            </ImageButton>
+            <skia:SKLottieView x:Name="pick_B" 
+                           ZIndex="4"
+                           Grid.Row="0" 
+                           Grid.RowSpan="3" 
+                           Grid.Column="1"
+                           IsAnimationEnabled="False" 
+                           RepeatCount="-1" 
+                           Source="pop_like.json"/>
+            <Label Text="{Binding priorityA.Name}" 
+               Grid.Row="3" 
+               Grid.Column="0"/>
+            <Label Text="{Binding priorityB.Name}" 
+               Grid.Row="3" 
+               Grid.Column="1"/>
+
+        </Grid>
+    </Grid>
+    
+</ContentPage>

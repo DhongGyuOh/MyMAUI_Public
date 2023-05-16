@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MyMAUI.ViewModels"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MyMAUI.Views.PhotoPage"
+             Title="PhotoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:PhotoVM x:Key="photovm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+            Source="photoshot.json"
+            RepeatCount="0" RepeatMode="Reverse"
+            Scale="1.5"
+            />
+        <Grid Grid.Row="0" Grid.Column="0" ZIndex="1" RowDefinitions="*,*,*,*,*,*">
+            <CarouselView ItemsSource="{Binding PhotoCollection}" IndicatorView="indicatorview" Grid.Row="0" Grid.RowSpan="5">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*">
+                            <Image Source ="{Binding Path}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding Source={x:StaticResource photovm},Path=cmd_GoToDetail}"
+                                            CommandParameter="{Binding .}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label 
+                                x:Name="lb_Title"
+                                Grid.Row="0"
+                                FontSize="30"
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Text="{Binding Title}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorview" Grid.Row="5" IndicatorColor="Green" 
+                           SelectedIndicatorColor="YellowGreen" HorizontalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

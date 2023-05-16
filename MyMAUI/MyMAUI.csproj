@@ -1,0 +1,194 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MyMAUI</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>MyMAUI</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mymaui</ApplicationId>
+		<ApplicationIdGuid>13435D3A-200D-44FD-A820-0389B9D6CF76</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		
+
+		<!-- Images -->
+		
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Include="Resources\Images\img_plan\*" />
+		<MauiImage Include="Resources\Images\img_quiz\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\img_food\**" />
+	  <AndroidResource Remove="Resources\Images\img_mozza\**" />
+	  <AndroidResource Remove="Resources\Images\img_photo\**" />
+	  <Compile Remove="Resources\Images\img_food\**" />
+	  <Compile Remove="Resources\Images\img_mozza\**" />
+	  <Compile Remove="Resources\Images\img_photo\**" />
+	  <EmbeddedResource Remove="Resources\Images\img_food\**" />
+	  <EmbeddedResource Remove="Resources\Images\img_mozza\**" />
+	  <EmbeddedResource Remove="Resources\Images\img_photo\**" />
+	  <MauiCss Remove="Resources\Images\img_food\**" />
+	  <MauiCss Remove="Resources\Images\img_mozza\**" />
+	  <MauiCss Remove="Resources\Images\img_photo\**" />
+	  <MauiImage Remove="Resources\Images\img_food\**" />
+	  <MauiImage Remove="Resources\Images\img_mozza\**" />
+	  <MauiImage Remove="Resources\Images\img_photo\**" />
+	  <MauiXaml Remove="Resources\Images\img_food\**" />
+	  <MauiXaml Remove="Resources\Images\img_mozza\**" />
+	  <MauiXaml Remove="Resources\Images\img_photo\**" />
+	  <None Remove="Resources\Images\img_food\**" />
+	  <None Remove="Resources\Images\img_mozza\**" />
+	  <None Remove="Resources\Images\img_photo\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\img_plan\plan_1bg.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_83.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_ama.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_amg.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_ang.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_bdbd.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_bs.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_bus.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_bw.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_cg.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_cy.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_dak.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_dm.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_eng.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_fish.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_fishpie.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_gil.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_hn.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_jtw.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_lazy.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_mh.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_mr.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_mrh.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_ms.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_pbg.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_pdc.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_pie.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_pk.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_rnr.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_rz.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_sd.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_sk.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_smsj.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_ssm.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_swsl.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_tea.jpg" />
+	  <None Remove="Resources\Images\img_plan\plan_yt.jpg" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.0-build-667.84928" />
+	  <PackageReference Include="Plugin.Maui.Audio" Version="0.1.0-preview1" />
+	  <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.59" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AlbumPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BalancePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BlankQuizPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FoodQuizPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MozzaDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MozzaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PhotoDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PhotoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PlanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PriorityQuizPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\QnAPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\QuizPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RewardDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RewardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VideoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\YesNoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_balance.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_blank.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_food.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_priority.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_qna.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_worldcup.jpg" />
+	  <MauiImage Include="Resources\Images\img_quiz\quiz_yesno.jpg" />
+	</ItemGroup>
+
+</Project>

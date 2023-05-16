@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia = "clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:vm ="clr-namespace:MyMAUI.ViewModels"
+             xmlns:service ="clr-namespace:MyMAUI.Services"
+             x:Class="MyMAUI.Views.StartPage"
+             Title="StartPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid 
+        RowDefinitions="*"
+        ColumnDefinitions="*">
+
+        <Frame Grid.Row="0" Grid.Column="0">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding cmd_Tapping}"
+                                      CommandParameter="{x:Reference skia}"/>
+            </Frame.GestureRecognizers>
+            <skia:SKLottieView x:Name="skia"
+            Source="cat_loader.json"
+            RepeatCount="-1"
+            HorizontalOptions="Center"
+            VerticalOptions="StartAndExpand"/>
+        </Frame>
+
+       
+    </Grid>
+</ContentPage>

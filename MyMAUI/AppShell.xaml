@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MyMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MyMAUI"
+    xmlns:view="clr-namespace:MyMAUI.Views"
+    Shell.NavBarIsVisible="False"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Start"
+        ContentTemplate="{DataTemplate view:StartPage}"    
+        Route="StartPage"/>
+
+    <FlyoutItem 
+        Title="App"
+        Route="App"
+        FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent 
+            x:Name="Quiz"
+            Title="문제 풀기"
+            Icon="quizicons.png"
+            ContentTemplate="{DataTemplate view:QuizPage}"
+            Route="QuizPage"
+            />
+
+        <ShellContent
+            x:Name="Album"
+            Title="앨범 사진"
+            Icon="dictionaryicon"
+            ContentTemplate="{DataTemplate view:AlbumPage}"
+            Route="AlbumPage"
+            />
+
+        <ShellContent
+            x:Name="Plan"
+            Title="계획 공유"
+            Icon="travelcon"
+            ContentTemplate="{DataTemplate view:PlanPage}"
+            Route="PlanPage"
+            />
+
+        <ShellContent
+            x:Name="Reward"
+            Title="보상 확인"
+            Icon="gifticon"
+            ContentTemplate="{DataTemplate view:RewardPage}"
+            Route="RewardPage"
+            />
+        
+        <ShellContent
+            x:Name="Video"
+            Title="동영상"
+            Icon="gifticon"
+            ContentTemplate="{DataTemplate view:VideoPage}"
+            Route="VideoPage"
+            />
+    </FlyoutItem>
+
+</Shell>

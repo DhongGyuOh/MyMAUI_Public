@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:media="clr-namespace:CommunityToolkit.Maui.MediaElement;assembly=CommunityToolkit.Maui.MediaElement"
+             x:Class="MyMAUI.Views.VideoPage"
+             Title="VideoPage">
+    
+    <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*">
+        <CarouselView ItemsSource="{Binding VideoList}" IndicatorView="indicatorview" Grid.Row="0" Grid.RowSpan="5">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*">
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding VideoName}" TextColor="YellowGreen" FontSize="Body"/>
+                        <media:MediaElement Grid.Row="1" Grid.RowSpan="5" Grid.Column="0" Source="{Binding VideoSource}" AutoPlay="False"/>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorview" Grid.Row="5" Grid.Column="0" IndicatorColor="Coral" SelectedIndicatorColor="Crimson" 
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
+    </Grid>
+    
+    
+</ContentPage>

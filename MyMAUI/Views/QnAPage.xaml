@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia ="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MyMAUI.Views.QnAPage"
+             >
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView
+            Source="screen_cloud_green.json"
+            RepeatCount="0"
+            Scale="3"
+            Grid.Row="0" Grid.Column="0"
+            ZIndex="2"
+            />
+        <Frame Grid.Row="0" Grid.Column="0" ZIndex="1" BackgroundColor="{AppThemeBinding Dark= Black, Light=White}">
+            <StackLayout>
+                <Label Text="제한시간 1분" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <skia:SKLottieView
+                    Source="sand_clock.json"
+                    RepeatCount="-1"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"/>
+
+                <Label Text="{Binding InTime}" HorizontalOptions="Center" VerticalOptions="Center" 
+                       FontSize="Title" TextColor="Red"/>
+                
+                <Label 
+                        FontSize="Large"
+                        Text="{Binding QnA.Question}"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                <Entry x:Name="txt_Answer"
+                       Text=""
+                       Placeholder="정답을 입력해주세요."
+                       PlaceholderColor="Gray"
+                       FontSize="Large"
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand"
+                       ReturnCommand="{Binding cmd_submit}"
+                       ReturnCommandParameter="{x:Reference txt_Answer}"/>
+                
+
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

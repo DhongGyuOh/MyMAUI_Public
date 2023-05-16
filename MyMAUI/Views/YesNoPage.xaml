@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MyMAUI.Views.YesNoPage"
+             Title="YesNoPage">
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView ZIndex="2" Grid.Row="0" Grid.Column="0"
+                           RepeatCount="0"
+                           Scale="3"
+                           Source="screen_cloud_orange.json"
+            />
+        <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*" ZIndex="1" Grid.Row="0" Grid.Column="0">
+            <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40" FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                   Text="{Binding yesNoQuiz.Question}"
+             />
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding count,StringFormat='남은 기회: {0}'}" 
+                   FontAttributes="Bold" FontSize="Title" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Orange"/>
+            <Button x:Name="btn_A"
+                Grid.Row="3" Grid.Column="0" FontSize="25" Margin="5,10" LineBreakMode="WordWrap"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    Text="{Binding yesNoQuiz.AnswerA}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_A}}"/>
+            <Button x:Name="btn_B"
+                Grid.Row="3" Grid.Column="1" FontSize="25" Margin="5,10" LineBreakMode="WordWrap"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    Text="{Binding yesNoQuiz.AnswerB}" 
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_B}}"/>
+        </Grid>
+    </Grid>
+    
+</ContentPage>

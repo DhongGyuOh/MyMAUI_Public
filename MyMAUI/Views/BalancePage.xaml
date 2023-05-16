@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MyMAUI.Views.BalancePage"
+             Title="BalancePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark= Black, Light= White}"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*">
+        <skia:SKLottieView
+            Source="screen_cloud_red.json"
+            Scale="3"
+            RepeatCount="0"
+            ZIndex="2"
+            />
+        <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*" Grid.Row="0" ZIndex="1">
+            <Frame Grid.Row="0" Grid.RowSpan="5">
+                <Button x:Name="btn_A" Text="{Binding balanceQuiz.OptionA}" FontSize="30" LineBreakMode="WordWrap" FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{x:Reference btn_A}"/>
+            </Frame>
+            <Label Grid.Row="5" Text="{Binding count, StringFormat='남은 기회: {0}'}" TextColor="Orange"
+                   FontSize="Title" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+            <Frame Grid.Row="6" Grid.RowSpan="5">
+                <Button x:Name="btn_B" Text="{Binding balanceQuiz.OptionB}" FontSize="30" LineBreakMode="WordWrap" FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{x:Reference btn_B}"/>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

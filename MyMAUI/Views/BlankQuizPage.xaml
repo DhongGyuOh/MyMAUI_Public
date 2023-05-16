@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMAUI.Views.BlankQuizPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="BlankQuizPage">
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+                           Source="screen_cloud_mint.json"                           
+                           RepeatCount="0"
+                           Scale="3"/>
+        <Grid RowDefinitions="*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*" ZIndex="1">
+            <Label x:Name="lb_QuestionA" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" FontSize="40" Margin="10"
+                   Text="{Binding blankQuiz.Question}" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding count,StringFormat='남은 기회: {0}'}" FontSize="Title" TextColor="Orange"/>
+            <Button x:Name="btn_Answer1" Grid.Row="5" Grid.Column="0" Margin="5,7" LineBreakMode="WordWrap"
+                    Text="{Binding blankQuiz.Answer1}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_Answer1}}"/>
+            <Button x:Name="btn_Answer2" Grid.Row="5" Grid.Column="1" Margin="5,7" LineBreakMode="WordWrap"
+                    Text="{Binding blankQuiz.Answer2}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_Answer2}}"/>
+            <Button x:Name="btn_Answer3" Grid.Row="5" Grid.Column="2" Margin="5,7" LineBreakMode="WordWrap"
+                    Text="{Binding blankQuiz.Answer3}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_Answer3}}"/>
+            <Button x:Name="btn_Answer4" Grid.Row="6" Grid.Column="1" Margin="5,7" LineBreakMode="WordWrap"
+                    Text="{Binding blankQuiz.Answer4}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_Answer4}}"/>
+            <Button x:Name="btn_Answer5" Grid.Row="6" Grid.Column="2" Margin="5,7" LineBreakMode="WordWrap"
+                    Text="{Binding blankQuiz.Answer5}"
+                    Command="{Binding cmd_Select}"
+                    CommandParameter="{Binding Source={x:Reference btn_Answer5}}"/>
+        </Grid>
+    </Grid>
+</ContentPage>

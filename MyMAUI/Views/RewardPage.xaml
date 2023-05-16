@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMAUI.Views.RewardPage"
+             xmlns:vm="clr-namespace:MyMAUI.ViewModels"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="RewardPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+            Source="rewardpop.json"
+            RepeatCount="0" RepeatMode="Reverse"
+            Scale="1"
+            />
+        <ScrollView Grid.Row="0" Grid.Column="0" ZIndex="1">
+            <StackLayout>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw1" Text="Icecream"
+                                   BackgroundColor="LightPink"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw1},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="icecream.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw2" Text="BingSu"
+                                   BackgroundColor="CadetBlue"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw2},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="icecreambowl.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw3"  Text="Chicken"
+                                   BackgroundColor="Orange"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw3},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="friedchicken.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw4" Text="Pizza"
+                                   BackgroundColor="Salmon"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw4},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="pizza.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw5" Text="coffee"
+                                   BackgroundColor="Salmon"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw5},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="coffee.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItems Mode="Execute">
+                            <SwipeItem x:Name="sw6" Text="burger"
+                                   BackgroundColor="Salmon"
+                                   Command="{Binding cmd_GoToRewardDetail}"
+                                   CommandParameter="{Binding Source={x:Reference sw6},Path=Text}"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+                    <Frame>
+                        <skia:SKLottieView
+                                Source="burger.json"
+                                RepeatCount="-1"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                />
+                    </Frame>
+                </SwipeView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+   
+</ContentPage>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:vm="clr-namespace:MyMAUI.ViewModels"
+             x:Class="MyMAUI.Views.PlanPage"
+             Title="PlanPage">
+    <ContentPage.Resources>
+        <vm:PlanVM x:Key="planvm"/>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+                           RepeatCount="0"
+                           Scale="1.3"
+                           Source="hearttravel.json"
+                           />
+        <Grid Grid.Row="0" Grid.Column="0" ZIndex="1" RowDefinitions="*,*,*,*,*,*,*,*">
+            <CollectionView ItemsSource="{Binding planItems}" Grid.Row="0" Grid.RowSpan="6">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="20">
+                            <Grid RowDefinitions="*,*,*,*,*,*,*,*" ColumnDefinitions="*,*">
+                                <Label x:Name="lb_Title2" Text="{Binding Title}" Grid.Row="0" Grid.Column="0" FontSize="22" TextColor="OrangeRed"/>
+                                <Label Text="{Binding SubTitle}" Grid.Row="1" Grid.Column="1" FontSize="18" TextColor="DarkOrange"/>
+                                <Image Source="{Binding Img_Path}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                       Grid.RowSpan="4" Aspect="AspectFill"/>
+                                <Label Text="{Binding Description}" Grid.Row="6" Grid.RowSpan="2" FontSize="14" TextColor="Green"
+                                       Grid.Column="0" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <CarouselView x:Name="carview" ItemsSource="{Binding plans}" Grid.Row="6" Grid.RowSpan="2" IndicatorView="indicatorview" Margin="20"
+                          CurrentItem="{Binding Source={x:StaticResource planvm},Path=SelectedItem,Mode=TwoWay}"
+                          CurrentItemChangedCommand="{Binding cmd_ChangeItem}"
+                          CurrentItemChangedCommandParameter="{Binding Source={x:Reference carview},Path=CurrentItem}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+                            <Label x:Name="lb_Title" Text="{Binding Title}" Grid.Row="0" Grid.Column="0" FontSize="32" HorizontalOptions="Center"/>
+                            <Label Text="{Binding Thema}" Grid.Row="0" Grid.Column="1" FontSize="20" HorizontalOptions="Center" TextColor="Green"/>
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="계획 선택" FontSize="22" FontAttributes="Bold" VerticalOptions="Center"
+                                    Command="{Binding Source={x:StaticResource planvm},Path=cmd_Share}" 
+                                    CommandParameter="{Binding Source={x:Reference lb_Title},Path=Text}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorview" Grid.Row="6" IndicatorColor="Green" Margin="20"
+                           SelectedIndicatorColor="YellowGreen" HorizontalOptions="Center"/>
+           
+        </Grid>
+    </Grid>
+    
+</ContentPage>

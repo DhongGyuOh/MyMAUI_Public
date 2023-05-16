@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="MyMAUI.Views.MozzaDetailPage"
+             Title="{Binding mozzas.Title}"
+             x:Name="MozzaDetailPg"
+             Disappearing="ContentPage_Disappearing">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+            Source="cathand.json"
+            Scale="1"
+            RepeatCount="0"
+            />
+        <ScrollView Grid.Row="0" Grid.Column="0" ZIndex="1">
+            <Grid RowDefinitions="*,*,*,*,*,*">
+                <Frame Grid.Row="0" Grid.RowSpan="4">
+                    <ImageButton Source="{Binding mozzas.Path}" Aspect="AspectFill" HeightRequest="400"/>
+                </Frame>
+                <Frame Grid.Row="4" Grid.RowSpan="2">
+                    <Label Text="{Binding mozzas.Detail}" FontSize="20"/>
+                </Frame>
+            </Grid>
+        </ScrollView>
+
+    </Grid>
+
+    
+</ContentPage>

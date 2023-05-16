@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMAUI.Views.QuizPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:vm="clr-namespace:MyMAUI.ViewModels"
+             Title="QuizPage"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:QuizVM x:Key="QuizVM"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <skia:SKLottieView Grid.Row="0" Grid.Column="0" ZIndex="2"
+            Source="puzzlepop.json"
+            RepeatCount="0"
+            Scale="1.7"/>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" ZIndex="1">
+            <CarouselView ItemsSource="{Binding Categories}" IndicatorView="indicatorview">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame  Padding="5,5" Margin="5,5" BorderColor="{AppThemeBinding Dark=Black, Light=White}"
+                                BackgroundColor="{AppThemeBinding Light=White,Dark=Black}">
+                                <StackLayout>
+                                    <Label x:Name="lb_CText" Text="{Binding CText}" FontSize="Title" 
+                                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="lb_CName" Text="{Binding CName}" FontSize="Title" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" IsVisible="false"/>
+                                    <ImageButton Source="{Binding CPath}"     
+                                             Command="{Binding Source={x:StaticResource QuizVM},Path=cmd_GoToQuiz}"
+                                             CommandParameter="{Binding Source={x:Reference lb_CName},Path=Text}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorview" IndicatorColor="Orange" SelectedIndicatorColor="Red" HorizontalOptions="Center"/>
+        </StackLayout>
+    </Grid>
+    
+</ContentPage>
